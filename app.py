@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from forms import Todo
 
 app = Flask(__name__)
-app.config.from_pyfile('settings.py')
+app.config.from_pyfile('config.py')
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -19,9 +19,12 @@ def name(first_name):
     return first_name
 
 
-@app.route('/todo', methods=['GET'])
+@app.route('/todo', methods=['GET', 'POST'])
 def todo():
     todo_form = Todo()
+    if todo_form.validate_on_submit():
+        print(todo_form.content.data)
+        return redirect('/')
     return render_template('todo.html', form=todo_form)
 
 
