@@ -19,6 +19,17 @@
             <input type="text" placeholder="last name" />
             <button type="submit">Submit</button>
           </form>
+
+          <hr />
+
+          <ul>
+            {% for todo in todos %}
+            <p class="text-muted">
+              <li>{{todo.content}}</li>
+            </p>
+
+            {%endfor%}
+          </ul>
         </div>
       </div>
     </div>
