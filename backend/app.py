@@ -41,6 +41,11 @@ def create():
     return str({'201': 'todo created successfully'})
 
 
+@app.route('/api/<int:id>', methods=['GET'])
+def show(id):
+    return jsonify([*map(todo_serializer, TodoModel.query.filter_by(id=id))])
+
+
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
     request_method = request.method
