@@ -1,9 +1,17 @@
 import React from "react";
 
-const Form = () => {
+const Form = ({ userInput, onFormChange, onFormSubmit }) => {
+  const handleChange = (event) => {
+    onFormChange(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onFormSubmit();
+  };
   return (
-    <form>
-      <input type="text" required />
+    <form onSubmit={handleSubmit}>
+      <input type="text" required value={userInput} onChange={handleChange} />
       <input type="submit" />
     </form>
   );

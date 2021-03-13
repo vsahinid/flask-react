@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for, jsonify, json
 from flask_sqlalchemy import SQLAlchemy
 from forms import Todo
 from models import TodoModel
@@ -30,6 +30,15 @@ def todo_serializer(todo):
 @app.route('/api', methods=['GET'])
 def index():
     return jsonify([*map(todo_serializer, TodoModel.query.all())])
+
+
+@app.route('/api/create', methods=['POST'])
+def create():
+    request_data = json.loads(request.data)
+    todo = TodoModel(content=request_data['content'])
+    db.session.add(todo)
+    db.session.commit()
+    return str({'201': 'todo created successfully'})
 
 
 @app.route('/', methods=['GET', 'POST'])
