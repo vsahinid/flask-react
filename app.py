@@ -1,10 +1,16 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def hello_world():
-    return render_template('hello.html', list_of_names=['Chris', 'Pizza', 'Ben'])
+    request_method = request.method
+    return render_template('base.html', list_of_names=['Chris', 'Pizza', 'Ben'], request_method=request_method)
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 
 @app.route('/<string:name>')
