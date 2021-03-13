@@ -10,9 +10,26 @@ const Form = ({ userInput, onFormChange, onFormSubmit }) => {
     onFormSubmit();
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" required value={userInput} onChange={handleChange} />
-      <input type="submit" />
+    <form onSubmit={handleSubmit} class="mb-6">
+      <label
+        class="mb-2 uppercase font-bold text-lg text-grey-darkest"
+        for="content"
+      >
+        Todo
+      </label>
+      <input
+        class="border py-2 px-3 text-grey-darkest"
+        required
+        onChange={handleChange}
+        type="text"
+        value={userInput}
+      />
+      <button
+        type="submit"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Create Todo
+      </button>
     </form>
   );
 };

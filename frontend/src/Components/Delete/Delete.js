@@ -20,7 +20,12 @@ const Delete = ({ id }) => {
   return (
     <>
       <Link to="/">
-        <button onClick={deleteTodo}>Delete</button>
+        <button
+          onClick={deleteTodo}
+          class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Delete
+        </button>
       </Link>
     </>
   );
