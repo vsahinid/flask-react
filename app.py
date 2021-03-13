@@ -1,5 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
+from forms import Todo
+
 app = Flask(__name__)
+app.config.from_pyfile('settings.py')
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -14,6 +17,12 @@ def hello_world():
 @app.route('/name/<string:first_name>')
 def name(first_name):
     return first_name
+
+
+@app.route('/todo', methods=['GET'])
+def todo():
+    todo_form = Todo()
+    return render_template('todo.html', form=todo_form)
 
 
 @app.route('/about')
