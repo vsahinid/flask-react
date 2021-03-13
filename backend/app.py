@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from forms import Todo
 from models import TodoModel
@@ -18,6 +18,18 @@ app.config.from_pyfile('config.py')
 
 
 db = SQLAlchemy(app)
+
+
+def todo_serializer(todo):
+    return {
+        'id': todo.id,
+        'content': todo.content
+    }
+
+
+@app.route('/api', methods=['GET'])
+def index():
+    return jsonify([*map(todo_serializer, TodoModel.query.all())])
 
 
 @app.route('/', methods=['GET', 'POST'])
