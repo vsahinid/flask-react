@@ -1,0 +1,35 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Flask + React App</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">Home</h4>
+              <ul>
+              {% for i in list_of_names %}
+               <p class="text-muted">
+               <li>{{i}}</li>
+              </p>
+              
+              {%endfor%}
+              </ul>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+  </body>
+</html>
