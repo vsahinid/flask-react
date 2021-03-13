@@ -46,6 +46,14 @@ def show(id):
     return jsonify([*map(todo_serializer, TodoModel.query.filter_by(id=id))])
 
 
+@app.route('/api/<int:id>', methods=['POST'])
+def delete(id):
+    request_data = json.loads(request.data)
+    TodoModel.query.filter_by(id=request_data['id']).delete()
+    db.session.commit()
+    return str({'204': 'todo deleted successfully'})
+
+
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
     request_method = request.method
