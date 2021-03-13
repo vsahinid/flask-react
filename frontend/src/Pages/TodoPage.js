@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "../Components/Card/Card";
+import Form from "../Components/Form/Form";
 
 const TodoPage = () => {
   const [todo, setTodo] = useState([]);
@@ -11,11 +12,12 @@ const TodoPage = () => {
           return response.json();
         }
       })
-      .then((data) => console.log(data));
+      .then((data) => setTodo(data));
   }, []);
   return (
     <>
-      <Card />
+      <Form />
+      <Card listOfTodos={todo} />
     </>
   );
 };
